@@ -1,0 +1,29 @@
+<html>
+  <head>
+    <script src='https://cdn.firebase.com/js/client/2.2.1/firebase.js'></script>
+    <script src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'></script>
+  </head>
+  <body>
+    <div id='messagesDiv'></div>
+    email : <input type='text' id='nameInput' placeholder='Name'>
+    password : <input type='password' id='pwInput' placeholder='Password'>
+    <button onclick="login()">Login</button>
+    <script>
+    
+    var ref = new Firebase("https://intense-inferno-3267.firebaseio.com");
+
+    function login() {
+        ref.createUser({
+          email    : document.getElementById('nameInput').value,
+          password : document.getElementById('pwInput').value,
+        }, function(error, userData) {
+          if (error) {
+            console.log("Error creating user:", error);
+          } else {
+            console.log("Successfully created user account with uid:", userData.uid);
+          }
+        });
+    }
+    </script>
+  </body>
+</html>
